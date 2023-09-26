@@ -19,9 +19,18 @@ function productsByCategory(category) {
   });
 }
 
+function updatePrice(data) {
+  return axiosInstances({
+    url: `${baseURL}/products/updateprice`,
+    method: "put",
+    data: data
+  });
+}
+
 
 
 export const API_URLS = {
   fetchCategories,
   productsByCategory,
+  updatePrice
 };
