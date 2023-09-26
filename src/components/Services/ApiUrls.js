@@ -14,7 +14,7 @@ function fetchCategories(params) {
 
 function productsByCategory(category) {
   return axiosInstances({
-    url: `${baseURL}/products/productsbycategory`,
+    url: `${baseURL}/products/productsbycategory/${category}`,
     method: "get",
   });
 }

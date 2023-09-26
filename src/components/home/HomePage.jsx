@@ -7,19 +7,8 @@ import { useNavigate } from "react-router-dom/dist/umd/react-router-dom.developm
 import { Button, Paper } from "@mui/material";
 
 export const HomePage = () => {
-    const [alert, setAlert] = useState()
     const [categories, setCategories] = useState([])
     const navigate = useNavigate()
-
-    const showAlert = (message, type) => {
-        setAlert({
-            message: message,
-            type: type,
-        });
-        setTimeout(() => {
-            setAlert({});
-        }, 2000);
-    };
 
     const fetchCategories = async () => {
         try {
@@ -42,7 +31,6 @@ export const HomePage = () => {
     return (
         <div style={{ display: "flex", flexDirection: 'column', alignItems: "center", margin: "auto", paddingTop: '50px', gap: '50px' }}>
             <h2>Product Categories</h2>
-            {alert && <CustomAlert alert={alert} />}
             <Paper style={{ width: "80%", padding: '20px 30px 50px 30px' }}>
                 <Table style={{ width: "100%" }}>
                     <TableHead>
@@ -57,10 +45,10 @@ export const HomePage = () => {
                         {categories && categories.length > 0 ?
                             categories.map((ctgry, idx) => {
                                 return <TableRow key={ctgry.category}>
-                                    <TableCell align='center' style={{ width: '33%' }}>{idx + 1}</TableCell>
-                                    <TableCell align='center' style={{ width: '33%' }}>{ctgry.category}</TableCell>
-                                    <TableCell align='center' style={{ width: '33%' }}>{ctgry.count}</TableCell>
-                                    <TableCell align='center' style={{ width: '33%' }}><Button color="primary" onClick={() => { navigate('/products') }}>...More</Button></TableCell>
+                                    <TableCell align='center'  >{idx + 1}</TableCell>
+                                    <TableCell align='center'  >{ctgry.category}</TableCell>
+                                    <TableCell align='center'  >{ctgry.count}</TableCell>
+                                    <TableCell align='center'  ><Button color="primary" onClick={() => { navigate(`/products/${ctgry.category}`) }}>...More</Button></TableCell>
                                 </TableRow>
                             })
                             :
@@ -68,7 +56,6 @@ export const HomePage = () => {
                     </TableBody>
                 </Table>
             </Paper>
-            {console.log(categories)}
         </div>
     );
 };
