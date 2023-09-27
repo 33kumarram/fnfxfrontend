@@ -12,6 +12,7 @@ export const ProductsPage = (params) => {
     const [products, setProducts] = useState([])
     const [alert, setAlert] = useState([])
     const [disabled, setDisabled] = useState(true)
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
     const showAlert = (message, type) => {
         setAlert({
@@ -42,6 +43,7 @@ export const ProductsPage = (params) => {
     const saveUpdatedPric = async (e) => {
         e.preventDefault()
         // console.log(products)
+        setIsSubmitting(true)
         try {
             const { isSuccess } = await API_URLS.updatePrice(products)
             if (isSuccess) {
@@ -51,6 +53,7 @@ export const ProductsPage = (params) => {
         } catch (err) {
             window.alert('Some error occurred')
         }
+        setIsSubmitting(false)
     }
 
     useEffect(() => {
@@ -92,6 +95,7 @@ export const ProductsPage = (params) => {
                                         <TableCell align='center' style={{ border: "1px solid black" }}>
                                             <input
                                                 type='number'
+                                                step='.01'
                                                 style={disabled ? { border: "none", textAlign: 'center', background: 'none' } : { border: "1px solid black" }}
                                                 onChange={(e) => changePrice(idx, e.target.value)}
                                                 defaultValue={products[idx]['price']}
@@ -106,7 +110,7 @@ export const ProductsPage = (params) => {
                     </Table>
                     <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: "10px", width: '100%', marginBottom: '10px' }}>
                         {alert && <CustomAlert alert={alert} />}
-                        <Button type="submit" variant="contained" color="primary">Save</Button>
+                        {!disabled && <Button type="submit" disabled={isSubmitting} variant="contained" color="primary">Save</Button>}
                     </div>
                 </form>
             </fieldset>
