@@ -71,8 +71,8 @@ export const ProductsPage = (params) => {
                                 <TableCell align='center' style={{ width: '20%', border: "1px solid black" }}>Sr. No.</TableCell>
                                 <TableCell align='center' style={{ width: '20%', border: "1px solid black" }}>Name</TableCell>
                                 <TableCell align='center' style={{ width: '20%', border: "1px solid black" }}>Image</TableCell>
-                                <TableCell align='center' style={{ width: '20%', border: "1px solid black" }}>Price</TableCell>
                                 <TableCell align='center' style={{ width: '20%', border: "1px solid black" }}>Description</TableCell>
+                                <TableCell align='center' style={{ width: '20%', border: "1px solid black" }}>Price</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
